@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Discos</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Discos</h1>
+    <a href="{% url 'registerDisk' %}">Cadastrar Disco</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>País</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for disk in disks %}
+            <tr>
+                <td>
+                    <a href="{% url 'disk' disk.pk %}">
+                        {{ disk.name }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'disk' disk.pk %}">
+                        {{ disk.description }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'disk' disk.pk %}">
+                        {{ disk.country }}
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'editDisk' disk.pk %}">
+                        Editar
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'deleteDisk' disk.pk %}">
+                        Excluir
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
